@@ -1084,7 +1084,7 @@ struct config6 {
   byte iacCrankDuty[4]; //Duty cycle to use on PWM valves when cranking
   byte iacCrankBins[4]; //Temperature Bins for the above 2 curves
 
-  byte iacAlgorithm : 3; //Valid values are: "None", "On/Off", "PWM", "PWM Closed Loop", "Stepper", "Stepper Closed Loop"
+  byte iacAlgorithm : 3; //Valid values are: "None", "Electric Throttle", "PWM", "PWM Closed Loop", "Stepper", "Stepper Closed Loop"
   byte iacStepTime : 3; //How long to pulse the stepper for to ensure the step completes (ms)
   byte iacChannels : 1; //How many outputs to use in PWM mode (0 = 1 channel, 1 = 2 channels)
   byte iacPWMdir : 1; //Direction of the PWM valve. 0 = Normal = Higher RPM with more duty. 1 = Reverse = Lower RPM with more duty
