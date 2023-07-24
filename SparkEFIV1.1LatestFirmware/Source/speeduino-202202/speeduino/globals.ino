@@ -231,6 +231,7 @@ byte pinFan;       ///< Cooling fan output (on/off? See: auxiliaries.ino)
 byte pinStepperDir; //Direction pin for the stepper motor driver
 byte pinStepperStep; //Step pin for the stepper motor driver
 byte pinStepperEnable; //Turning the DRV8825 driver on/off
+byte pinETB; // ETB output pin
 byte pinLaunch;
 byte pinIgnBypass; //The pin used for an ignition bypass (Optional)
 byte pinFlex; //Pin with the flex sensor attached

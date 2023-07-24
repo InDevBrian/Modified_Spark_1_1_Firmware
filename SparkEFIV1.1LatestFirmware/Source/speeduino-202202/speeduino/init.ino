@@ -1813,6 +1813,7 @@ void setPinMapping(byte boardID)
       pinStepperDir = 16; //Stepper valve isn't used with these
       pinStepperStep = 17; //Stepper valve isn't used with these
       pinStepperEnable = 24; //Stepper valve isn't used with these
+      pinETB = A9; // ETB Output Pin
       pinFan = 47; //Pin for the fan output (Goes to ULN2003)
       pinLaunch = 51; //Launch control pin
       pinFlex = 2; // Flex sensor

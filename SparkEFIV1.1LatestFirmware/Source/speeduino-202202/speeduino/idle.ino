@@ -466,6 +466,14 @@ void idleControl()
         //Standard running
         currentStatus.idleThrottle = table2D_getValue(&iacETBTable, currentStatus.coolant + CALIBRATION_TEMPERATURE_OFFSET); //All temps are offset by 40 degrees
       }
+      // check that the value is in the expected range
+      if ( (0 <= currentStatus.idleThrottle) && (currentStatus.idleThrottle <= 25)){
+        analogWrite(pinETB, currentStatus.idleThrottle*2.5) //Multiply by 2.5 to go from 0 to 25, to 0 to 25% of 255 the analog output 5V which is 100% throttle
+      }
+      else {
+        // Error with expected value = close throttle - do this better
+        analogWrite(pinETB, 0);
+      }
       break;
 
     case IAC_ALGORITHM_PWM_OL:      //Case 2 is PWM open loop
