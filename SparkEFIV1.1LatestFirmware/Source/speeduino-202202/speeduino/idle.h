@@ -6,7 +6,7 @@
 #include BOARD_H //Note that this is not a real file, it is defined in globals.h. 
 
 #define IAC_ALGORITHM_NONE    0
-#define IAC_ALGORITHM_ONOFF   1
+#define IAC_ALGORITHM_ETB   1
 #define IAC_ALGORITHM_PWM_OL  2
 #define IAC_ALGORITHM_PWM_CL  3
 #define IAC_ALGORITHM_STEP_OL 4
@@ -36,9 +36,11 @@ struct StepperIdle
 struct table2D iacClosedLoopTable;
 struct table2D iacPWMTable;
 struct table2D iacStepTable;
+struct table2D iacETBTable;
 //Open loop tables specifically for cranking
 struct table2D iacCrankStepsTable;
 struct table2D iacCrankDutyTable;
+struct table2D iacCrankETBTable;
 
 struct StepperIdle idleStepper;
 bool idleOn; //Simply tracks whether idle was on last time around

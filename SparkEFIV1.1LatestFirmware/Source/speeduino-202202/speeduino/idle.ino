@@ -50,13 +50,19 @@ void initialiseIdle()
       //Case 0 is no idle control ('None')
       break;
 
-    case IAC_ALGORITHM_ONOFF:
-      //Case 1 is on/off idle control
-      if ((currentStatus.coolant + CALIBRATION_TEMPERATURE_OFFSET) < configPage6.iacFastTemp)
-      {
-        digitalWrite(pinIdle1, HIGH);
-        idleOn = true;
-      }
+    case IAC_ALGORITHM_ETB:
+      //Case 1 is electric throttle body
+      iacETBTable.xSize = 10;
+      iacETBTable.valueSize = SIZE_BYTE;
+      iacETBTable.axisSize = SIZE_BYTE;
+      iacETBTable.values = configPage6.iacETBValues;
+      iacETBTable.axisX = configPage6.iacBins;
+
+      iacCrankETBTable.xSize = 4;
+      iacCrankETBTable.valueSize = SIZE_BYTE;
+      iacCrankETBTable.axisSize = SIZE_BYTE;
+      iacCrankETBTable.values = configPage6.iacCrankETB;
+      iacCrankETBTable.axisX = configPage6.iacCrankBins;
       break;
 
     case IAC_ALGORITHM_PWM_OL:
@@ -448,18 +454,17 @@ void idleControl()
     case IAC_ALGORITHM_NONE:       //Case 0 is no idle control ('None')
       break;
 
-    case IAC_ALGORITHM_ONOFF:      //Case 1 is on/off idle control
-      if ( (currentStatus.coolant + CALIBRATION_TEMPERATURE_OFFSET) < configPage6.iacFastTemp) //All temps are offset by 40 degrees
+    case IAC_ALGORITHM_ETB:      //Case 1 is Electric Throttle Body
+      //Check for cranking pulsewidth
+      if ( BIT_CHECK(currentStatus.engine, BIT_ENGINE_CRANK) )
       {
-        digitalWrite(pinIdle1, HIGH);
-        idleOn = true;
-        BIT_SET(currentStatus.spark, BIT_SPARK_IDLE); //Turn the idle control flag on
+        //Currently cranking. Use the cranking table
+        currentStatus.idleThrottle = table2D_getValue(&iacCrankETBTable, currentStatus.coolant + CALIBRATION_TEMPERATURE_OFFSET); //All temps are offset by 40 degrees
       }
-      else if (idleOn)
+      else
       {
-        digitalWrite(pinIdle1, LOW); 
-        idleOn = false; 
-        BIT_CLEAR(currentStatus.spark, BIT_SPARK_IDLE); //Turn the idle control flag on
+        //Standard running
+        currentStatus.idleThrottle = table2D_getValue(&iacETBTable, currentStatus.coolant + CALIBRATION_TEMPERATURE_OFFSET); //All temps are offset by 40 degrees
       }
       break;
 
