@@ -8,7 +8,7 @@
 The Spark EFI project is a flexible, fully featured Engine Management Systems (EMS aka ECU) based on the low cost and open source Arduino and STM32 platform. It provides the firmware and software components that make up an engine management system, all provided under open licenses. Spark EFI boards are speeduino software compatible. This repository has speeduino software customized for SparkEFI boards. That paragraph was plagiarised by me, this software has been modified for my spark v1.1 to support some features I'm implementing on an e28 BMW
 
 Currently implemented
--
+- Nothing!
 
 Implementation In Progress
 - Electronic Throttle Body Idle Control
