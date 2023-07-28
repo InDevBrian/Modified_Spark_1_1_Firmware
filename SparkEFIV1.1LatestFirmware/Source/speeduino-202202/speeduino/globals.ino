@@ -194,6 +194,7 @@ byte pinTPS;      //TPS input pin
 byte pinMAP;      //MAP sensor pin
 byte pinEMAP;     //EMAP sensor pin
 byte pinMAP2;     //2nd MAP sensor (Currently unused)
+byte pinMAF;      //MAF input pin
 byte pinIAT;      //IAT sensor pin
 byte pinCLT;      //CLS sensor pin
 byte pinO2;       //O2 Sensor pin

@@ -1797,6 +1797,7 @@ void setPinMapping(byte boardID)
       pinTrigger3 = 20; //The Cam sensor 2 pin
       pinTPS = A2;//TPS input pin
       pinMAP = A3; //MAP sensor pin
+      pinMAF = A9;//Labeled as spare analog input 1 on the spark v1.1, Pin A8 on the grey connector
       pinIAT = A0; //IAT sensor pin
       pinCLT = A1; //CLT sensor pin
       pinO2 = A8; //O2 Sensor pin

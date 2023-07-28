@@ -225,7 +225,9 @@ void loop()
 
     //***Perform sensor reads***
     //-----------------------------------------------------------------------------------------------------
+    // Every Cycle
     readMAP();
+    readMAF();
     
     if (BIT_CHECK(LOOP_TIMER, BIT_TIMER_15HZ)) //Every 32 loops
     {
@@ -1375,6 +1377,11 @@ byte getVE1()
     //IMAP / EMAP
     currentStatus.fuelLoad = (currentStatus.MAP * 100) / currentStatus.EMAP;
   }
+  else if (configPage2.fuelAlgorithm == LOAD_SOURCE_MAF)
+  {
+    //MAF
+    currentStatus.fuelLoad = currentStatus.MAF;
+  }
   else { currentStatus.fuelLoad = currentStatus.MAP; } //Fallback position
   tempVE = get3DTableValue(&fuelTable, currentStatus.fuelLoad, currentStatus.RPM); //Perform lookup into fuel map for RPM vs MAP value
 
@@ -1404,6 +1411,11 @@ byte getAdvance1()
   {
     //IMAP / EMAP
     currentStatus.ignLoad = (currentStatus.MAP * 100) / currentStatus.EMAP;
+  }
+  else if (configPage2.ignAlgorithm == LOAD_SOURCE_MAF)
+  {
+    //MAF
+    currentStatus.ignLoad = currentStatus.MAF;
   }
   tempAdvance = get3DTableValue(&ignitionTable, currentStatus.ignLoad, currentStatus.RPM) - OFFSET_IGNITION; //As above, but for ignition advance
   tempAdvance = correctionsIgn(tempAdvance);

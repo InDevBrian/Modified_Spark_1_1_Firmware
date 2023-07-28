@@ -58,12 +58,16 @@ unsigned long TPSlast_time; //The time the previous TPS sample was taken
 byte MAPlast; /**< The previous MAP reading */
 unsigned long MAP_time; //The time the MAP sample was taken
 unsigned long MAPlast_time; //The time the previous MAP sample was taken
+int16_t MAFlast; /**< The previous MAP reading */
+unsigned long MAF_time; //The time the MAP sample was taken
+unsigned long MAFlast_time; //The time the previous MAP sample was taken
 volatile unsigned long vssTimes[VSS_SAMPLES] = {0};
 volatile byte vssIndex;
 
 
 //These variables are used for tracking the number of running sensors values that appear to be errors. Once a threshold is reached, the sensor reading will go to default value and assume the sensor is faulty
 byte mapErrorCount = 0;
+byte mafErrorCount = 0;
 byte iatErrorCount = 0;
 byte cltErrorCount = 0;
 
