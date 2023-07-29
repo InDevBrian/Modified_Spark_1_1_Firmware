@@ -9,13 +9,13 @@ The Spark EFI project is a flexible, fully featured Engine Management Systems (E
 
 ## Project Scope
 Currently implemented
-- Nothing!
+- Electronic Throttle Body Idle Control (untested)
+- MAF Tuning Support (untested - needs work for sure)
 
 Implementation In Progress
-- Electronic Throttle Body Idle Control
+- ...
 
 Future Features
-- MAF Tuning Support
 - Electronic Throttle Body Cruise Control
 - Drive By Wire With Supporting Hardware Redundancies
 
